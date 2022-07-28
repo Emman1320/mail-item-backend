@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 // const functions = require("firebase-functions");
-// const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
@@ -76,6 +75,14 @@ app.get("/error-mail", (request, response) => {
   errorEmails = [];
   response.status(200).send({ errorEmails: temp, errorText: tempText });
 });
-// exports.api = functions.https.onRequest(app);         
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port, () => {
+  console.log("Listening to 3000...");
+});
+// exports.api = functions.https.onRequest(app);
 
 // http://localhost:5001/mail-mate/us-central1/api
